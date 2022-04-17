@@ -1,0 +1,56 @@
+<div class="containers">
+    <div class="left__side">
+        <input type="text" class="form-control mt-3 mb-3" style="width: 80%; margin: auto;" placeholder="Пошук..." name="person" [(ngModel)]="person">
+        <table class="table table-hover table-bordered table-striped" style="width: 80%; margin: auto;">
+            <thead class="thead-dark">
+                <tr>
+                    <th scope="col">№</th>
+                    <th scope="col">Ім'я</th>
+                    <th scope="col">Фамілія</th>
+                    <th scope="col">Номер телефону</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let person of arrPerson | search:person; ;  index as i" [routerLink]="[ '/person/', person.id ]"
+                    style="cursor: pointer;">
+                    <td>{{ i + 1 }}</td>
+                    <td>{{person.firstname}}</td>
+                    <td>{{person.lastname}}</td>
+                    <td>+{{person.phoneNumber}}</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+    <div class="right__side">
+        <form class="forms" [formGroup]="addPersonForm">
+            <mat-form-field class="example-full-width mt-3" appearance="fill">
+                <mat-label>Ім'я</mat-label>
+                <input matInput placeholder="Ім'я" formControlName="firstname">
+            </mat-form-field>
+            <mat-form-field class="example-full-width mt-3" appearance="fill">
+                <mat-label>Фамілія</mat-label>
+                <input matInput placeholder="Фамілія" formControlName="lastname">
+            </mat-form-field>
+            <mat-form-field class="example-full-width mt-3" appearance="fill">
+                <mat-label>Номер телефона</mat-label>
+                <input matInput placeholder="Номер телефона" formControlName="phoneNumber" type="number">
+            </mat-form-field>
+            <mat-form-field class="example-full-width mt-3" appearance="fill">
+                <mat-label>Електронна пошта</mat-label>
+                <input matInput placeholder="Електронна пошта" formControlName="email">
+            </mat-form-field>
+            <mat-form-field appearance="fill">
+                <mat-label>Choose a date</mat-label>
+                <input matInput [matDatepicker]="picker" formControlName="dateOfBirth">
+                <mat-hint>MM/DD/YYYY</mat-hint>
+                <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+                <mat-datepicker #picker></mat-datepicker>
+            </mat-form-field>
+            <mat-form-field class="example-full-width mt-3" appearance="fill">
+                <mat-label>Адреса</mat-label>
+                <input matInput placeholder="Адреса" formControlName="address">
+            </mat-form-field>
+            <button mat-flat-button color="primary" class="mt-3" style="width: 70%; margin: auto;" (click)="addPerson()" [disabled]="addPersonForm.invalid">Добавити</button>
+        </form>
+    </div>
+</div>

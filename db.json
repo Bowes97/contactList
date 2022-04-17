@@ -1,0 +1,13 @@
+{
+  "persons": [
+    {
+      "firstname": "Grisha",
+      "lastname": "Tygach",
+      "dateOfBirth": "2022-04-19T21:00:00.000Z",
+      "phoneNumber": 123213213333,
+      "email": "gmail@gmail.com",
+      "address": "chornovola, 123",
+      "id": 1
+    }
+  ]
+}

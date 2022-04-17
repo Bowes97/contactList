@@ -1,0 +1,45 @@
+<div class="block mt-3" *ngFor="let person of arr">
+    <h1 class="mt-3">{{person.firstname}} {{person.lastname}}</h1>
+    <p>Елкетронна пошта: {{person.email}}</p>
+    <p>Телефоний номер: {{person.phoneNumber}}</p>
+    <p>Адреса: {{person.address}} </p>
+    <p>Дата народження: {{person.dateOfBirth | slice:0:10}} </p>
+    <div class="buttons">
+        <button mat-raised-button color="primary" (click)="editPerson(person)">Оновити контакт</button>
+        <button mat-raised-button color="warn" (click)="deletePerson()">Видалити контакт</button>
+    </div>
+</div>
+<form [formGroup]="updateForm" [hidden]="edit">
+    <h2 style="text-align: center;">Редагувати дані про користувача</h2>
+    <mat-form-field class="example-full-width mt-3" appearance="fill">
+        <mat-label>Ім'я</mat-label>
+        <input matInput placeholder="Ім'я" formControlName="firstname">
+    </mat-form-field>
+    <mat-form-field class="example-full-width mt-3" appearance="fill">
+        <mat-label>Фамілія</mat-label>
+        <input matInput placeholder="Фамілія" formControlName="lastname">
+    </mat-form-field>
+    <mat-form-field class="example-full-width mt-3" appearance="fill">
+        <mat-label>Номер телефона</mat-label>
+        <input matInput placeholder="Номер телефона" formControlName="phoneNumber" type="number">
+    </mat-form-field>
+    <mat-form-field class="example-full-width mt-3" appearance="fill">
+        <mat-label>Електронна пошта</mat-label>
+        <input matInput placeholder="Електронна пошта" formControlName="email">
+    </mat-form-field>
+    <mat-form-field appearance="fill">
+        <mat-label>Choose a date</mat-label>
+        <input matInput [matDatepicker]="picker" formControlName="dateOfBirth">
+        <mat-hint>MM/DD/YYYY</mat-hint>
+        <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+        <mat-datepicker #picker></mat-datepicker>
+    </mat-form-field>
+    <mat-form-field class="example-full-width mt-3" appearance="fill">
+        <mat-label>Адреса</mat-label>
+        <input matInput placeholder="Адреса" formControlName="address">
+    </mat-form-field>
+    <button mat-raised-button color="primary" [disabled]="updateForm.invalid" (click)="updatePerson()">Змінити</button>
+</form>
+<button mat-fab color="warn" aria-label="Example icon button with a home icon" class="home" (click)="backToHomePage()">
+    <mat-icon>home</mat-icon>
+</button>

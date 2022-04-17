@@ -1,0 +1,14 @@
+.containers {
+    display: flex;
+}
+
+.left__side,
+.right__side {
+    width: 50%;
+}
+
+.forms {
+    display: flex;
+    flex-direction: column;
+    width: 80%;
+}
