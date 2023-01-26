@@ -11,7 +11,7 @@
                 </tr>
             </thead>
             <tbody>
-                <tr *ngFor="let person of arrPerson | search:person; ;  index as i" [routerLink]="[ '/person/', person.id ]"
+                <tr *ngFor="let person of arrPerson | search:person; index as i" [routerLink]="[ '/person/', person.id ]"
                     style="cursor: pointer;">
                     <td>{{ i + 1 }}</td>
                     <td>{{person.firstname}}</td>

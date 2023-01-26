@@ -8,6 +8,24 @@
       "email": "gmail@gmail.com",
       "address": "chornovola, 123",
       "id": 1
+    },
+    {
+      "firstname": null,
+      "lastname": null,
+      "dateOfBirth": null,
+      "phoneNumber": null,
+      "email": null,
+      "address": null,
+      "id": 2
+    },
+    {
+      "firstname": null,
+      "lastname": null,
+      "dateOfBirth": null,
+      "phoneNumber": null,
+      "email": null,
+      "address": null,
+      "id": 3
     }
   ]
 }

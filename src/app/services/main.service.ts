@@ -1,13 +1,12 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { Observable } from 'rxjs';
+import {BehaviorSubject, Observable, Subject} from 'rxjs';
 import { IPerson } from '../interfaces/main.inteface';
 
 @Injectable({
   providedIn: 'root'
 })
 export class MainService {
-
   private url = 'http://localhost:3000/persons'
 
   constructor(private http: HttpClient) { }

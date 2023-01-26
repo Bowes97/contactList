@@ -14,7 +14,7 @@ export class MainPageComponent implements OnInit {
   public arrPerson!: Array<IPerson>
   public addPersonForm!: FormGroup;
 
-  constructor(private mainService: MainService, private fb: FormBuilder) { }
+  constructor(readonly mainService: MainService, private fb: FormBuilder) { }
 
   ngOnInit(): void {
     this.getPersons();
@@ -26,7 +26,7 @@ export class MainPageComponent implements OnInit {
       firstname: [null, Validators.required],
       lastname: [null, Validators.required],
       dateOfBirth: [null, Validators.required],
-      phoneNumber: [null, [Validators.required, Validators.pattern(new RegExp("[0-9 ]{12}"))]],
+      phoneNumber: [null, [Validators.required, Validators.pattern(new RegExp("[0-9]{12}"))]],
       email: [null, [Validators.required, Validators.email]],
       address: [null, Validators.required],
     })

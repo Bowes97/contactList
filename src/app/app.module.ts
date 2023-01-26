@@ -20,7 +20,7 @@ import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatNativeDateModule } from '@angular/material/core';
 import { MatIconModule } from '@angular/material/icon';
-
+import { MainService } from "./services/main.service";
 import { SearchPipe } from './pipes/search/search.pipe';
 
 @NgModule({
@@ -46,7 +46,7 @@ import { SearchPipe } from './pipes/search/search.pipe';
     MatNativeDateModule,
     MatIconModule
   ],
-  providers: [],
+  providers: [MainService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

@@ -1,5 +1,5 @@
-import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
+import {Component, OnInit} from '@angular/core';
+import { ActivatedRoute, Router } from '@angular/router';
 import { Location } from '@angular/common';
 import { MainService } from 'src/app/services/main.service';
 import { IPerson } from 'src/app/interfaces/main.inteface';
@@ -12,16 +12,17 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 })
 export class DetailsPageComponent implements OnInit {
 
-  public url = this.router.url.slice(8, 50);
   public updateForm!: FormGroup;
-  public arr!: Array<IPerson>;
+  public arr: IPerson[] = [];
   public edit = true;
+  public show!: boolean;
 
   constructor(
     private router: Router,
-    private location: Location,
-    private mainService: MainService,
+    readonly location: Location,
+    readonly mainService: MainService,
     private fb: FormBuilder,
+    private activedRoute: ActivatedRoute,
   ) { }
 
   ngOnInit(): void {
@@ -41,16 +42,14 @@ export class DetailsPageComponent implements OnInit {
   }
 
   getPerson(): void {
-    this.mainService.getOne(Number(this.url)).subscribe((data) => {
-      let arr = [];
-      arr.push(data)
-      this.arr = arr;
+    this.mainService.getOne(this.activedRoute.snapshot.params['id']).subscribe((data) => {
+      this.arr.push(data);
     })
   }
 
   deletePerson(): void {
-    this.mainService.delete(Number(this.url)).subscribe(() => {
-      this.location.back();
+    this.mainService.delete(this.activedRoute.snapshot.params['id']).subscribe(() => {
+      this.backToHomePage();
     })
   }
 
@@ -67,7 +66,7 @@ export class DetailsPageComponent implements OnInit {
   }
 
   updatePerson(): void {
-    this.mainService.update(this.updateForm.value, Number(this.url)).subscribe(() => {
+    this.mainService.update(this.updateForm.value, this.activedRoute.snapshot.params['id']).subscribe(() => {
       this.edit = true;
       this.getPerson();
     })
