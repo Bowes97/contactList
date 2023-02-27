@@ -44,7 +44,7 @@ import { SearchPipe } from './pipes/search/search.pipe';
     MatDatepickerModule,
     MatFormFieldModule,
     MatNativeDateModule,
-    MatIconModule
+    MatIconModule,
   ],
   providers: [MainService],
   bootstrap: [AppComponent]

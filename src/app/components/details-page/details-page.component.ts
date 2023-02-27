@@ -1,4 +1,4 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, OnDestroy, OnInit} from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Location } from '@angular/common';
 import { MainService } from 'src/app/services/main.service';
@@ -10,12 +10,14 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
   templateUrl: './details-page.component.html',
   styleUrls: ['./details-page.component.scss']
 })
-export class DetailsPageComponent implements OnInit {
+export class DetailsPageComponent implements OnInit, OnDestroy {
 
   public updateForm!: FormGroup;
-  public arr: IPerson[] = [];
-  public edit = true;
-  public show!: boolean;
+  public arr!: IPerson;
+  public edit = false;
+  public show = false;
+  public number = 100;
+  public progresBar = 50;
 
   constructor(
     private router: Router,
@@ -43,7 +45,9 @@ export class DetailsPageComponent implements OnInit {
 
   getPerson(): void {
     this.mainService.getOne(this.activedRoute.snapshot.params['id']).subscribe((data) => {
-      this.arr.push(data);
+      this.arr = data;
+      this.show = true;
+      this.progresBar = 50;
     })
   }
 
@@ -62,12 +66,13 @@ export class DetailsPageComponent implements OnInit {
       email: person.email,
       address: person.address,
     })
-    this.edit = false;
+    this.edit = true;
+    this.progresBar = 100;
   }
 
   updatePerson(): void {
     this.mainService.update(this.updateForm.value, this.activedRoute.snapshot.params['id']).subscribe(() => {
-      this.edit = true;
+      this.edit = false;
       this.getPerson();
     })
   }
@@ -76,4 +81,7 @@ export class DetailsPageComponent implements OnInit {
     this.location.back();
   }
 
+  ngOnDestroy() {
+    this.show = false;
+  }
 }

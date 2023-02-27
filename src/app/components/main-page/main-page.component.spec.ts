@@ -4,7 +4,7 @@ import {MainPageComponent} from './main-page.component';
 import {HttpClientTestingModule} from "@angular/common/http/testing";
 import {FormGroup, FormsModule, ReactiveFormsModule} from "@angular/forms";
 import {MainService} from "../../services/main.service";
-import { of } from 'rxjs';
+import {of} from 'rxjs';
 import {SearchPipe} from "../../pipes/search/search.pipe";
 import {MatIconModule} from "@angular/material/icon";
 import {MatFormFieldModule} from "@angular/material/form-field";
@@ -18,14 +18,13 @@ import {NgbModule} from "@ng-bootstrap/ng-bootstrap";
 import {MatInputModule} from "@angular/material/input";
 import {MatButtonModule} from "@angular/material/button";
 import {MatNativeDateModule} from "@angular/material/core";
-import {createSpyFromClass, Spy} from 'jasmine-auto-spies';
+import {Spy} from 'jasmine-auto-spies';
 
 describe('MainPageComponent', () => {
   let component: MainPageComponent;
   let fixture: ComponentFixture<MainPageComponent>;
   let testData: any;
   let emptyData: any;
-  let addPersonForm: FormGroup;
   let mainService: MainService
   let httpSpy: Spy<HttpClient>;
 
@@ -121,7 +120,6 @@ describe('MainPageComponent', () => {
     const response = [] as any;
     spyOn(mainService, 'getInfo').and.returnValue(of(response))
     component.getPersons();
-    fixture.detectChanges();
     expect(component.arrPerson).toEqual(response);
   });
 

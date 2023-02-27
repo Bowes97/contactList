@@ -47,25 +47,13 @@ describe('DetailsPageComponent', () => {
   it('should edit person', function () {
     spyOn(component, 'editPerson').and.callThrough();
     component.editPerson(testData);
-    expect(component.edit).toBe(false)
-    // expect(component.updateForm.patchValue(
-    //   {
-    //     id: 2,
-    //     firstname: 'B',
-    //     lastname: 'C',
-    //     phoneNumber: 'D',
-    //     dateOfBirth: 'E',
-    //     email: 'A',
-    //     address: 'H'
-    //   }
-    // ))
+    expect(component.edit).toBeTruthy()
   });
 
   it('should getPerson', function () {
-    let response = [1] as any;
-    spyOn(mainService, 'getOne').and.returnValue(of(response))
+    spyOn(mainService, 'getOne').and.returnValue(of(testData))
     component.getPerson();
-    expect(component.arr.length).toEqual(response.length)
+    expect(component.mainService.getOne).toHaveBeenCalled();
   });
 
   it('should delete', function () {
@@ -78,7 +66,7 @@ describe('DetailsPageComponent', () => {
   it('should update', function () {
     let spy = spyOn(component.mainService, 'update').and.returnValue(of(user));
     component.updatePerson();
-    expect(component.edit).toBeTruthy()
+    expect(component.edit).toBeFalsy()
     expect(spy).toHaveBeenCalled()
   });
 });
