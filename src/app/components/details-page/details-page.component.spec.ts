@@ -6,6 +6,8 @@ import {ReactiveFormsModule} from "@angular/forms";
 import {IPerson} from "../../interfaces/main.inteface";
 import {MainService} from "../../services/main.service";
 import {of} from 'rxjs';
+import {Router} from "@angular/router";
+import {MatIconModule} from "@angular/material/icon";
 
 describe('DetailsPageComponent', () => {
   let component: DetailsPageComponent;
@@ -13,11 +15,12 @@ describe('DetailsPageComponent', () => {
   let mainService: MainService;
   let testData: any;
   let user: any;
+  let router: Router
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
       declarations: [DetailsPageComponent],
-      imports: [RouterTestingModule, HttpClientTestingModule, ReactiveFormsModule]
+      imports: [RouterTestingModule, HttpClientTestingModule, ReactiveFormsModule, MatIconModule]
     })
       .compileComponents();
     mainService = TestBed.inject(MainService);
@@ -27,6 +30,7 @@ describe('DetailsPageComponent', () => {
     fixture = TestBed.createComponent(DetailsPageComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
+    router = TestBed.inject(Router)
     testData = [
       {id: 1, firstname: 'A', lastname: 'B', phoneNumber: 'C', dateOfBirth: 'D', email: 's', address: 'F'}
     ] as IPerson[];
@@ -40,33 +44,37 @@ describe('DetailsPageComponent', () => {
 
   it('should navigate to home page', function () {
     spyOn(component, 'backToHomePage').and.callThrough();
+    let spy = spyOn(router, 'navigate')
     component.backToHomePage();
-    expect(component.backToHomePage).toHaveBeenCalled();
-  });
-
-  it('should edit person', function () {
-    spyOn(component, 'editPerson').and.callThrough();
-    component.editPerson(testData);
-    expect(component.edit).toBeTruthy()
+    expect(spy).toHaveBeenCalledWith(['/']);
   });
 
   it('should getPerson', function () {
     spyOn(mainService, 'getOne').and.returnValue(of(testData))
     component.getPerson();
     expect(component.mainService.getOne).toHaveBeenCalled();
+    expect(component.arr).toEqual(testData);
+    expect(component.show).toBeTruthy();
   });
 
+  it('should edit person', function () {
+    component.editPerson(user);
+    expect(component.updateForm.value).toEqual(user)
+    expect(component.edit).toBeTruthy()
+  });
+
+
   it('should delete', function () {
-    const spy = spyOn(component.mainService, 'delete').and.returnValue(of(user));
+    let spy = spyOn(component.mainService, 'delete').and.returnValue(of(user));
     component.deletePerson();
-    component.backToHomePage();
-    expect(spy).toHaveBeenCalled()
+    expect(spy).toHaveBeenCalled();
   });
 
   it('should update', function () {
-    let spy = spyOn(component.mainService, 'update').and.returnValue(of(user));
+    spyOn(component.mainService, 'update').and.returnValue(of(testData));
+    spyOn(component.mainService, 'getOne').and.returnValue(of(testData));
     component.updatePerson();
-    expect(component.edit).toBeFalsy()
-    expect(spy).toHaveBeenCalled()
+    expect(component.edit).toBeFalsy();
+    expect(component.arr).toEqual(testData);
   });
 });

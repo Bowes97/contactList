@@ -16,8 +16,6 @@ export class DetailsPageComponent implements OnInit, OnDestroy {
   public arr!: IPerson;
   public edit = false;
   public show = false;
-  public number = 100;
-  public progresBar = 50;
 
   constructor(
     private router: Router,
@@ -47,7 +45,6 @@ export class DetailsPageComponent implements OnInit, OnDestroy {
     this.mainService.getOne(this.activedRoute.snapshot.params['id']).subscribe((data) => {
       this.arr = data;
       this.show = true;
-      this.progresBar = 50;
     })
   }
 
@@ -67,7 +64,6 @@ export class DetailsPageComponent implements OnInit, OnDestroy {
       address: person.address,
     })
     this.edit = true;
-    this.progresBar = 100;
   }
 
   updatePerson(): void {
@@ -78,7 +74,7 @@ export class DetailsPageComponent implements OnInit, OnDestroy {
   }
 
   backToHomePage(): void {
-    this.location.back();
+    this.router.navigate(['/'])
   }
 
   ngOnDestroy() {

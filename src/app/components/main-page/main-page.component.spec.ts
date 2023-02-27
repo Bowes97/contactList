@@ -125,7 +125,9 @@ describe('MainPageComponent', () => {
 
   it('should addPerson', function () {
     spyOn(component.mainService, 'create').and.returnValue(of(testData));
+    let spy = spyOn(mainService, 'getInfo').and.returnValue(of(testData));
     component.addPerson();
+    expect(component.arrPerson).toEqual(testData)
     expect(component.mainService.create).toHaveBeenCalled();
   });
 
