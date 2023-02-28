@@ -2,7 +2,7 @@ import {Component, OnDestroy, OnInit} from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Location } from '@angular/common';
 import { MainService } from 'src/app/services/main.service';
-import { Person } from 'src/app/interfaces/person.inteface';
+import { Person } from 'src/app/interfaces/person';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 
 @Component({

@@ -3,7 +3,7 @@ import {DetailsPageComponent} from './details-page.component';
 import {RouterTestingModule} from "@angular/router/testing";
 import {HttpClientTestingModule} from "@angular/common/http/testing";
 import {ReactiveFormsModule} from "@angular/forms";
-import {Person} from "../../interfaces/person.inteface";
+import {Person} from "../../interfaces/person";
 import {MainService} from "../../services/main.service";
 import {of} from 'rxjs';
 import {Router} from "@angular/router";

@@ -1,7 +1,7 @@
 import {TestBed} from '@angular/core/testing';
 import {MainService} from './main.service';
 import {HttpClientTestingModule} from "@angular/common/http/testing";
-import {Person} from "../interfaces/person.inteface";
+import {Person} from "../interfaces/person";
 
 describe('MainService', () => {
   let service: MainService;
