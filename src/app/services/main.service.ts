@@ -1,7 +1,7 @@
 import {Injectable} from '@angular/core';
 import {HttpClient} from '@angular/common/http';
-import {BehaviorSubject, Observable, Subject} from 'rxjs';
-import {IPerson} from '../interfaces/main.inteface';
+import {Observable} from 'rxjs';
+import {Person} from '../interfaces/person.inteface';
 
 @Injectable({
   providedIn: 'root'
@@ -12,19 +12,19 @@ export class MainService {
   constructor(private http: HttpClient) {
   }
 
-  getInfo(): Observable<IPerson[]> {
-    return this.http.get<IPerson[]>(this.url)
+  getInfo(): Observable<Person[]> {
+    return this.http.get<Person[]>(this.url)
   }
 
-  getOne(id: number): Observable<IPerson> {
-    return this.http.get<IPerson>(`${this.url}/${id}`)
+  getOne(id: number): Observable<Person> {
+    return this.http.get<Person>(`${this.url}/${id}`)
   }
 
-  create(person: IPerson): Observable<void> {
+  create(person: Person): Observable<void> {
     return this.http.post<void>(this.url, person)
   }
 
-  update(person: IPerson, id: number): Observable<void> {
+  update(person: Person, id: number): Observable<void> {
     return this.http.put<void>(`${this.url}/${id}`, person)
   }
 

@@ -2,7 +2,7 @@ import {Component, OnDestroy, OnInit} from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Location } from '@angular/common';
 import { MainService } from 'src/app/services/main.service';
-import { IPerson } from 'src/app/interfaces/main.inteface';
+import { Person } from 'src/app/interfaces/person.inteface';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 
 @Component({
@@ -13,13 +13,12 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 export class DetailsPageComponent implements OnInit, OnDestroy {
 
   public updateForm!: FormGroup;
-  public arr!: IPerson;
+  public arr!: Person;
   public edit = false;
   public show = false;
 
   constructor(
     private router: Router,
-    readonly location: Location,
     readonly mainService: MainService,
     private fb: FormBuilder,
     private activedRoute: ActivatedRoute,
@@ -54,7 +53,7 @@ export class DetailsPageComponent implements OnInit, OnDestroy {
     })
   }
 
-  editPerson(person: IPerson): void {
+  editPerson(person: Person): void {
     this.updateForm.patchValue({
       firstname: person.firstname,
       lastname: person.lastname,

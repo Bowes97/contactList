@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { IPerson } from 'src/app/interfaces/main.inteface';
+import { Person } from 'src/app/interfaces/person.inteface';
 import { MainService } from 'src/app/services/main.service';
 
 @Component({
@@ -11,7 +11,7 @@ import { MainService } from 'src/app/services/main.service';
 export class MainPageComponent implements OnInit {
 
   public person!: string;
-  public arrPerson!: Array<IPerson>
+  public arrPerson!: Array<Person>
   public addPersonForm!: FormGroup;
 
   constructor(readonly mainService: MainService, private fb: FormBuilder) { }

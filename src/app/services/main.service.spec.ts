@@ -1,8 +1,7 @@
 import {TestBed} from '@angular/core/testing';
-
 import {MainService} from './main.service';
-import {HttpClientTestingModule, HttpTestingController} from "@angular/common/http/testing";
-import {IPerson} from "../interfaces/main.inteface";
+import {HttpClientTestingModule} from "@angular/common/http/testing";
+import {Person} from "../interfaces/person.inteface";
 
 describe('MainService', () => {
   let service: MainService;
@@ -15,7 +14,7 @@ describe('MainService', () => {
     service = TestBed.inject(MainService);
     testData = [
       {id: 1, firstname: 'A', lastname: 'B', phoneNumber: 'C', dateOfBirth: 'D', email: 's', address: 'F'}
-    ] as IPerson[];
+    ] as Person[];
   });
 
   it('should be created', () => {

@@ -1,24 +1,15 @@
 import {ComponentFixture, TestBed} from '@angular/core/testing';
-
 import {MainPageComponent} from './main-page.component';
-import {HttpClientTestingModule} from "@angular/common/http/testing";
-import {FormGroup, FormsModule, ReactiveFormsModule} from "@angular/forms";
+import {FormsModule, ReactiveFormsModule} from "@angular/forms";
 import {MainService} from "../../services/main.service";
 import {of} from 'rxjs';
 import {SearchPipe} from "../../pipes/search/search.pipe";
-import {MatIconModule} from "@angular/material/icon";
-import {MatFormFieldModule} from "@angular/material/form-field";
 import {MatDatepickerModule} from "@angular/material/datepicker";
 import {BrowserModule} from "@angular/platform-browser";
-import {AppRoutingModule} from "../../app-routing.module";
-import {HttpClient, HttpClientModule} from "@angular/common/http";
+import {HttpClientModule} from "@angular/common/http";
 import {BrowserAnimationsModule} from "@angular/platform-browser/animations";
-import {MatTableModule} from "@angular/material/table";
-import {NgbModule} from "@ng-bootstrap/ng-bootstrap";
 import {MatInputModule} from "@angular/material/input";
-import {MatButtonModule} from "@angular/material/button";
 import {MatNativeDateModule} from "@angular/material/core";
-import {Spy} from 'jasmine-auto-spies';
 
 describe('MainPageComponent', () => {
   let component: MainPageComponent;
@@ -26,32 +17,24 @@ describe('MainPageComponent', () => {
   let testData: any;
   let emptyData: any;
   let mainService: MainService
-  let httpSpy: Spy<HttpClient>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
       declarations: [MainPageComponent, SearchPipe],
       imports: [
         BrowserModule,
-        AppRoutingModule,
         HttpClientModule,
         BrowserAnimationsModule,
-        MatTableModule,
-        NgbModule,
         MatInputModule,
-        MatButtonModule,
         ReactiveFormsModule,
         FormsModule,
         MatDatepickerModule,
-        MatFormFieldModule,
         MatNativeDateModule,
-        MatIconModule
       ],
       providers: [MainService]
     })
       .compileComponents();
     mainService = TestBed.inject(MainService);
-    httpSpy = TestBed.inject<any>(HttpClient);
   });
 
   beforeEach(() => {
@@ -97,7 +80,7 @@ describe('MainPageComponent', () => {
     expect(component.addPersonForm.value).toEqual(PersonFormValues);
   })
 
-  it('should phoneNumber should be valid when it has value', function () {
+  it('phoneNumber field should be valid when it has value', function () {
     component.addPersonForm.controls['phoneNumber'].setValue(123456781012);
     fixture.detectChanges();
     expect(component.addPersonForm.controls['phoneNumber'].valid).toBeTruthy();
@@ -122,7 +105,7 @@ describe('MainPageComponent', () => {
     expect(component.addPersonForm.value).toEqual(PersonFormValues);
   })
 
-  it('should get all person', function () {
+  it('should get all people', function () {
     const response = [] as any;
     spyOn(mainService, 'getInfo').and.returnValue(of(response))
     component.getPersons();
@@ -130,7 +113,7 @@ describe('MainPageComponent', () => {
     expect(component.addPersonForm.value).toEqual(emptyData)
   });
 
-  it('should addPerson', function () {
+  it('should create person', function () {
     spyOn(component.mainService, 'create').and.returnValue(of(testData));
     let spy = spyOn(mainService, 'getInfo').and.returnValue(of(testData));
     component.addPerson();

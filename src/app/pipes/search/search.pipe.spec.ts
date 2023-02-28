@@ -13,7 +13,7 @@ describe('SearchPipe', () => {
     expect(pipe.transform(testData, 'Grisha')).toEqual(['Grisha']);
   });
 
-  it('should give empty array', function () {
+  it('should receive empty array', function () {
     let testData: any = [];
     expect(pipe.transform(testData.length, 'Grisha')).toEqual([]);
   });
