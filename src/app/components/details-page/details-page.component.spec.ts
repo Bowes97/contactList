@@ -42,6 +42,24 @@ describe('DetailsPageComponent', () => {
     expect(component).toBeTruthy();
   });
 
+  it('should be form invalid', function () {
+    const PersonForm = {
+      firstname: null,
+      lastname: null,
+      dateOfBirth: null,
+      phoneNumber: null,
+      email: null,
+      address: null
+    }
+    expect(component.updateForm.value).toEqual(PersonForm)
+  });
+
+  it('should phoneNumber should be valid when it has value', function () {
+    component.updateForm.controls['phoneNumber'].setValue(123456781012);
+    fixture.detectChanges();
+    expect(component.updateForm.controls['phoneNumber'].valid).toBeTruthy();
+  });
+
   it('should navigate to home page', function () {
     spyOn(component, 'backToHomePage').and.callThrough();
     let spy = spyOn(router, 'navigate')

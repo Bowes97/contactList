@@ -86,7 +86,6 @@ describe('MainPageComponent', () => {
   });
 
   it('form should be invalid', () => {
-    const PersonForm = component.addPersonForm;
     const PersonFormValues = {
       firstname: null,
       lastname: null,
@@ -95,8 +94,15 @@ describe('MainPageComponent', () => {
       email: null,
       address: null
     }
-    expect(PersonForm.value).toEqual(PersonFormValues);
+    expect(component.addPersonForm.value).toEqual(PersonFormValues);
   })
+
+  it('should phoneNumber should be valid when it has value', function () {
+    component.addPersonForm.controls['phoneNumber'].setValue(123456781012);
+    fixture.detectChanges();
+    expect(component.addPersonForm.controls['phoneNumber'].valid).toBeTruthy();
+  });
+
 
   it('form should be valid', () => {
     const PersonFormValues = {
@@ -121,6 +127,7 @@ describe('MainPageComponent', () => {
     spyOn(mainService, 'getInfo').and.returnValue(of(response))
     component.getPersons();
     expect(component.arrPerson).toEqual(response);
+    expect(component.addPersonForm.value).toEqual(emptyData)
   });
 
   it('should addPerson', function () {
