@@ -69,7 +69,7 @@ describe('MainPageComponent', () => {
   });
 
   it('form should be invalid', () => {
-    const PersonFormValues = {
+    const personFormValues = {
       firstname: null,
       lastname: null,
       dateOfBirth: null,
@@ -77,7 +77,7 @@ describe('MainPageComponent', () => {
       email: null,
       address: null
     }
-    expect(component.addPersonForm.value).toEqual(PersonFormValues);
+    expect(component.addPersonForm.value).toEqual(personFormValues);
   })
 
   it('phoneNumber field should be valid when it has value', function () {
@@ -88,7 +88,7 @@ describe('MainPageComponent', () => {
 
 
   it('form should be valid', () => {
-    const PersonFormValues = {
+    const personFormValues = {
       firstname: "Grisha",
       lastname: "Tygach",
       phoneNumber: "0968031301",
@@ -102,7 +102,7 @@ describe('MainPageComponent', () => {
     component.addPersonForm.get("dateOfBirth")?.setValue('18.11.2000');
     component.addPersonForm.get("email")?.setValue('grishah@gmail.com');
     component.addPersonForm.get("address")?.setValue('Zamarstunivska');
-    expect(component.addPersonForm.value).toEqual(PersonFormValues);
+    expect(component.addPersonForm.value).toEqual(personFormValues);
   })
 
   it('should get all people', function () {

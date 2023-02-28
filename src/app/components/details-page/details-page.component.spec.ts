@@ -43,7 +43,7 @@ describe('DetailsPageComponent', () => {
   });
 
   it('should be form invalid', function () {
-    const PersonForm = {
+    const personForm = {
       firstname: null,
       lastname: null,
       dateOfBirth: null,
@@ -51,7 +51,7 @@ describe('DetailsPageComponent', () => {
       email: null,
       address: null
     }
-    expect(component.updateForm.value).toEqual(PersonForm)
+    expect(component.updateForm.value).toEqual(personForm)
   });
 
   it('phoneNumber should be valid when it has value', function () {
